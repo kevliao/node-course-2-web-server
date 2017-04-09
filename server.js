@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs'); // handlebar extension
 const fs = require('fs');
 
+const port = process.env.PORT || 3000 // process.env is object that stores all env variables as key value pairs
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -50,8 +51,9 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('server is on 3000');
+// dynamic variable, envr variable PORT that Heroku set, will change, using SET on windows
+app.listen(port, () => {
+  console.log(`server is up on port ${port}`);
 });
 
 
